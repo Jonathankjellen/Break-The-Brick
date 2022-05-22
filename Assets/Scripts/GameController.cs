@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public Ball ball {get; private set;}
     public Paddle paddle {get; private set;}
     public Brick[] bricks {get; private set;}
+    public List<Ball> balls {get; set;}
     public int level = 1;
     public int score = 0;
     public int lives = 3;
@@ -47,6 +48,7 @@ public class GameController : MonoBehaviour
         this.ball = FindObjectOfType<Ball>();
         this.paddle = FindObjectOfType<Paddle>();
         this.bricks = FindObjectsOfType<Brick>();
+        this.balls.Add(FindObjectOfType<Ball>().GetComponent<Ball>());
     }
     public void Hit(Brick brick)
     {
@@ -68,15 +70,18 @@ public class GameController : MonoBehaviour
     }
     public void Miss()
     {
-        this.lives--;
-        if(this.lives > 0)
-        {
-            ResetLevel();
-        } 
-        else 
-        {
-            GameOver();
+        if(!BallsLeft()){
+            this.lives--;
+            if(this.lives > 0)
+            {
+                ResetLevel();
+            } 
+            else 
+            {
+                GameOver();
+            }
         }
+        
     }
     private bool Cleared()
     {
@@ -88,5 +93,17 @@ public class GameController : MonoBehaviour
             } 
         }
         return true;
+    }
+    private bool BallsLeft()
+    {
+        
+        for(int i=0; i < this.balls.Count; i++)
+        {
+            if(this.balls[i].gameObject.activeInHierarchy)
+            {
+                return true;
+            } 
+        }
+        return false;
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6034299163810343521
+--- !u!1 &4251579189323879851
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6034299163810343520}
-  - component: {fileID: 6034299163810343535}
-  - component: {fileID: 6034299163810343534}
-  - component: {fileID: 4375544730133425272}
+  - component: {fileID: 4251579189323879844}
+  - component: {fileID: 4251579189323879845}
+  - component: {fileID: 4251579189323879847}
+  - component: {fileID: 4251579189323879846}
+  - component: {fileID: 4251579189323879840}
   m_Layer: 0
-  m_Name: Brick
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6034299163810343520
+--- !u!4 &4251579189323879844
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6034299163810343521}
+  m_GameObject: {fileID: 4251579189323879851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6034299163810343535
+--- !u!212 &4251579189323879845
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6034299163810343521}
+  m_GameObject: {fileID: 4251579189323879851}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,24 +74,45 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 58b0497a33455e241ae993de6196dcf6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e2f5955d00da9740b2b24f49ef8920d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 1}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6034299163810343534
-BoxCollider2D:
+--- !u!50 &4251579189323879847
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6034299163810343521}
+  m_GameObject: {fileID: 4251579189323879851}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 1e279643e8be6414086247484350e415, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &4251579189323879846
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4251579189323879851}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -98,36 +120,18 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 4, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &4375544730133425272
+  m_Radius: 0.32
+--- !u!114 &4251579189323879840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6034299163810343521}
+  m_GameObject: {fileID: 4251579189323879851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87e26a5407b59ed46b9694c58dbf77ff, type: 3}
+  m_Script: {fileID: 11500000, guid: fe6e0efc8546720458f8f67490592c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states:
-  - {fileID: 21300000, guid: 58b0497a33455e241ae993de6196dcf6, type: 3}
-  - {fileID: 21300000, guid: 1a2a30f0ba4a2994297946f6db2f9084, type: 3}
-  - {fileID: 21300000, guid: 8007cc813306f0d44989c67c76271178, type: 3}
-  - {fileID: 21300000, guid: 938fbcff7f5a3be4b95fb7b0eabfdddb, type: 3}
-  - {fileID: 21300000, guid: 998e3152be4f8a240bf6106cc4281848, type: 3}
-  unbreakable: 0
-  points: 100
-  originalBall: {fileID: 4251579189323879851, guid: b6926ea089685434b82c3608312c3e4e, type: 3}
+  speed: 500

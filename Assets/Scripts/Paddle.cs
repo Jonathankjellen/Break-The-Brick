@@ -8,6 +8,10 @@ public class Paddle : MonoBehaviour
     public Vector2 direction {get; private set;}
     public float speed = 30f;
     public float maxBounceAngle = 75f;
+    // Variable used for mouse movement
+    private Vector3 offset;
+    // Variable used for mouse movement
+    private float z;
     private void Awake()
     {
         this.rigidbody = GetComponent<Rigidbody2D>();
@@ -49,5 +53,22 @@ public class Paddle : MonoBehaviour
             Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
             ball.rigidbody.velocity = rotation * Vector2.up * ball.rigidbody.velocity.magnitude;
         }
+    }
+    void OnMouseDown()
+    {
+        // Retrive the pressed object´s z-position
+        z = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+
+        // Offset between object´s current position and the position of the mouse
+        offset = gameObject.transform.position - 
+        Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0, z));
+    }
+
+    void OnMouseDrag()
+    {
+        // Sets the position of the object to where the mouse is
+        transform.position = 
+        Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0, z)) 
+        + offset;
     }
 }

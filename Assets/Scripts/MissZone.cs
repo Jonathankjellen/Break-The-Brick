@@ -8,6 +8,7 @@ public class MissZone : MonoBehaviour
     {
         if(collision.gameObject.name == "Ball")
         {
+            collision.gameObject.SetActive(false);
             FindObjectOfType<GameController>().Miss();
         }
     }

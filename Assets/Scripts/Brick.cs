@@ -9,6 +9,7 @@ public class Brick : MonoBehaviour
     public Sprite[] states;
     public bool unbreakable;
     public int points = 100;
+    public GameObject originalBall;
 
     private void Awake()
     {
@@ -20,7 +21,6 @@ public class Brick : MonoBehaviour
         {
             this.health = this.states.Length;
             this.spriteRenderer.sprite = this.states[this.health - 1];
-
         }
     }
     private void Hit()
@@ -32,6 +32,11 @@ public class Brick : MonoBehaviour
         if(this.health <= 0)
         {
             this.gameObject.SetActive(false);
+            // Release a new ball with random function
+            GameObject newBall = GameObject.Instantiate(originalBall);
+            newBall.name = "Ball";
+            newBall.GetComponent<Ball>().ResetBall();
+            FindObjectOfType<GameController>().balls.Add(newBall.GetComponent<Ball>());
         } else 
         {
             this.spriteRenderer.sprite = this.states[this.health - 1];
