@@ -44,6 +44,7 @@ public class Ball : MonoBehaviour
     {
         this.transform.position = new Vector2(0f, -8);
         this.rigidbody.velocity = Vector2.zero;
+        this.gameObject.SetActive(true);
 
         Invoke(nameof(SetRandomTrajectory), 1f);
     }
