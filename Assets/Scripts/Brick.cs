@@ -31,12 +31,16 @@ public class Brick : MonoBehaviour
         this.health--;
         if(this.health <= 0)
         {
-            this.gameObject.SetActive(false);
+            Vector3 pos = this.transform.position;
             // Release a new ball with random function
-            GameObject newBall = GameObject.Instantiate(originalBall);
-            newBall.name = "Ball";
-            newBall.GetComponent<Ball>().ResetBall();
+            GameObject newBall = GameObject.Instantiate(originalBall, pos, new Quaternion(0,0,0,0));
+            newBall.name = "NewBall";
+            newBall.layer = 6;
+            newBall.GetComponent<Ball>().setForceNewballs(this.transform);
+            //newBall.transform.position = new Vector2(0, 20);
+            //newBall.GetComponent<Ball>().ResetBall();
             FindObjectOfType<GameController>().balls.Add(newBall.GetComponent<Ball>());
+            this.gameObject.SetActive(false);
         } else 
         {
             this.spriteRenderer.sprite = this.states[this.health - 1];
@@ -46,7 +50,7 @@ public class Brick : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "Ball")
+        if(collision.gameObject.name == "Ball" || collision.gameObject.name == "NewBall")
         {
             Hit();
         }

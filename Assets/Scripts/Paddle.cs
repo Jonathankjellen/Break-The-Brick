@@ -52,6 +52,11 @@ public class Paddle : MonoBehaviour
             
             Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
             ball.rigidbody.velocity = rotation * Vector2.up * ball.rigidbody.velocity.magnitude;
+            if(ball.isNew)
+            {
+                ball.gameObject.layer = 3;
+            }
+            
         }
     }
     void OnMouseDown()

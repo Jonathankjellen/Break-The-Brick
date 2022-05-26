@@ -48,7 +48,8 @@ public class GameController : MonoBehaviour
         this.ball = FindObjectOfType<Ball>();
         this.paddle = FindObjectOfType<Paddle>();
         this.bricks = FindObjectsOfType<Brick>();
-        this.balls.Add(FindObjectOfType<Ball>().GetComponent<Ball>());
+        this.balls = new List<Ball>();
+        this.balls.Add(this.ball);
     }
     public void Hit(Brick brick)
     {

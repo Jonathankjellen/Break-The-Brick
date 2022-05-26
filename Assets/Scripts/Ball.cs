@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour
 {
     public new Rigidbody2D rigidbody {get; private set;}
     public float speed = 500f;
+    public bool isNew = true;
 
     private void Awake()
     {
@@ -14,7 +15,21 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
-        ResetBall();
+        if(this.gameObject.name == "Ball")
+        {
+            ResetBall();
+            isNew = false;
+        } else {
+
+        }
+    }
+    public void changeForce()
+    {
+        Vector2 force = Vector2.zero;
+        force.x = 0;
+        force.y = -1f;
+
+        this.rigidbody.AddForce(force.normalized * speed);
     }
 
     private void SetRandomTrajectory()
@@ -32,4 +47,17 @@ public class Ball : MonoBehaviour
 
         Invoke(nameof(SetRandomTrajectory), 1f);
     }
+    public void setForceNewballs(Transform pos)
+    {
+        //this.transform.position = new Vector2(pos.position.x, pos.position.y);
+        //this.transform.position = new Vector2(0, 0);
+        this.rigidbody.velocity = Vector2.zero;
+
+        Vector2 force = Vector2.zero;
+        force.x = 0;
+        force.y = -1f;
+
+        this.rigidbody.AddForce(force.normalized * speed/2);
+    }
+    
 }
