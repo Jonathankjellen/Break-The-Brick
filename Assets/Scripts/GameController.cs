@@ -13,8 +13,6 @@ public class GameController : MonoBehaviour
     public int level = 0;
     public int score = 0;
     public int lives = 3;
-    public GameObject[] hearts;
-    public GameObject life_1;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -44,9 +42,7 @@ public class GameController : MonoBehaviour
     {
         this.score = 0;
         this.lives = 3;
-        this.hearts[0].SetActive(true);
-        this.hearts[1].SetActive(true);
-        this.hearts[2].SetActive(true);
+        
         LoadLevel(this.level + 1);
     }
 
@@ -79,6 +75,7 @@ public class GameController : MonoBehaviour
         this.bricks = FindObjectsOfType<Brick>();
         this.balls = new List<Ball>();
         this.balls.Add(this.ball);
+        
     }
     public void Hit(Brick brick)
     {
@@ -93,19 +90,21 @@ public class GameController : MonoBehaviour
     {
         this.ball.ResetBall();
         this.paddle.ResetPaddle();
+        
     }
 
     private void GameOver()
     {
-        // SceneManager.Loadscene("Gameover);
-        NewGame();
+        SceneManager.LoadScene("GameOverScene");
+        //NewGame();
+        //FindObjectOfType<LifeHandler>().activateAll();
     }
     public void Miss()
     {
         if(!BallsLeft()){
+            //GetComponent<LifeHandler>().removeLife(this.lives);
+            FindObjectOfType<LifeHandler>().removeLife(this.lives);
             this.lives--;
-            this.life_1.SetActive(false);
-            //this.hearts[0].SetActive(false);
             if(this.lives > 0)
             {
                 ResetLevel();
